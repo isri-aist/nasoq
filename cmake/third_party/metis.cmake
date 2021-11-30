@@ -13,7 +13,7 @@ if(TARGET metis::metis)
     return()
 endif()
 
-find_package(METIS OPTIONAL_COMPONENTS)
+find_package(METIS)
 if(METIS_FOUND)
     message(STATUS "Third-party (external): creating target 'metis::metis'")
 
