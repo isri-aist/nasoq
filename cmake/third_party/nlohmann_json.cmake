@@ -40,8 +40,8 @@ target_include_directories(nlohmann_json INTERFACE
 target_compile_definitions(nlohmann_json INTERFACE -DLA_WITH_NLOHMANNJSON)
 
 # Install rules
-set(CMAKE_INSTALL_DEFAULT_COMPONENT_NAME nlohmann_json)
-install(DIRECTORY ${nlohmann_json_SOURCE_DIR}/include/nlohmann DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(TARGETS nlohmann_json EXPORT NlohmannJson_Targets)
-install(EXPORT NlohmannJson_Targets DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/nlohmann_json NAMESPACE nlohmann_json::)
-export(EXPORT NlohmannJson_Targets FILE "${CMAKE_CURRENT_BINARY_DIR}/NlohmannJsonTargets.cmake")
+# set(CMAKE_INSTALL_DEFAULT_COMPONENT_NAME nlohmann_json)
+# install(DIRECTORY ${nlohmann_json_SOURCE_DIR}/include/nlohmann DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+# install(TARGETS nlohmann_json EXPORT NlohmannJson_Targets)
+# install(EXPORT NlohmannJson_Targets DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/nlohmann_json NAMESPACE nlohmann_json::)
+# export(EXPORT NlohmannJson_Targets FILE "${CMAKE_CURRENT_BINARY_DIR}/NlohmannJsonTargets.cmake")
