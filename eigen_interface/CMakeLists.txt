@@ -4,7 +4,7 @@ target_include_directories(nasoq_eigen INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/in
 
 target_link_libraries(nasoq_eigen INTERFACE
 	nasoq::nasoq
-	Eigen3::Eigen
+	# Eigen3::Eigen
 )
 
 add_library(nasoq::eigen_interface ALIAS nasoq_eigen)

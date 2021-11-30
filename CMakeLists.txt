@@ -62,7 +62,9 @@ list(PREPEND CMAKE_MODULE_PATH
 
 
 if(NASOQ_WITH_EIGEN)
-    include(eigen)
+  # include(eigen)
+  find_package(Eigen3 REQUIRED)
+  include_directories(${EIGEN3_INCLUDE_DIR})
 endif()
 
 if(NASOQ_USE_BLAS_MKL)
@@ -184,7 +186,7 @@ endif()
 
 if(NASOQ_WITH_EIGEN)
     add_subdirectory(eigen_interface)
-    target_link_libraries(nasoq PUBLIC Eigen3::Eigen)
+    # target_link_libraries(nasoq PUBLIC Eigen3::Eigen)
 endif()
 
 add_library(nasoq::nasoq ALIAS nasoq)
