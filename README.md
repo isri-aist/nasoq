@@ -17,6 +17,10 @@ MKL Pardiso or OpenBlas (BLAS), OpenMP and METIS.
 Cmake handles METIS.
 If you install OpenBlas in its default location (sudo make install), Cmake will detect it.
 
+METIS is a mandatory dependency in this branch. It can be installed by
+```
+sudo aptitude install libmetis-dev
+```
 
 ### Building the project
 Given that MKL Pardiso or OpenBlas  are installed, install NASOQ using
@@ -27,6 +31,7 @@ cd build
 cmake -DMKL_ROOT_PATH=path/to/intel  -DCMAKE_BUILD_TYPE=Release ..
 cmake ..
 ```
+If you install Intel MKL via apt, `path/to/intel` is `/opt/intel`.
 
 A quick script for building and running NASOQ is provided in `buildALL.sh`. 
 You need to first correct paths to libraries and then you can run it as following:
