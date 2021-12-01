@@ -21,9 +21,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 set(NASOQ_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
 
-# TODO: maybe install rules could be a more idiomatic way of doing this?
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/lib/")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/lib/")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 
 #----------------------------------[ options ]---------------------------------#
 
@@ -102,7 +102,7 @@ set(NASOQ_INTERNAL_INCLUDE_DIRS
     "${CMAKE_CURRENT_LIST_DIR}/include/nasoq"
 )
 
-add_library(nasoq "")
+add_library(nasoq SHARED "")
 
 target_sources(nasoq PRIVATE
     "src/nasoq.cpp"
@@ -171,7 +171,11 @@ if(NASOQ_USE_CLAPACK)
 endif()
 
 
-target_include_directories(nasoq PUBLIC "${PROJECT_SOURCE_DIR}/include")
+target_include_directories(nasoq PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+    $<INSTALL_INTERFACE:include/nasoq>
+)
 target_include_directories(nasoq PRIVATE ${NASOQ_INTERNAL_INCLUDE_DIRS})
 target_compile_definitions(nasoq PRIVATE "SYM_REMOV")
 target_link_libraries(nasoq PRIVATE metis::metis)
@@ -244,3 +248,16 @@ if(NASOQ_BUILD_DOCS)
     message("Doxygen need to be installed to generate the doxygen documentation")
     endif (DOXYGEN_FOUND)
 endif(NASOQ_BUILD_DOCS)
+
+install(TARGETS nasoq
+  EXPORT  nasoq-export
+  COMPONENT runtime
+  LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT shlib
+  ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}" COMPONENT lib
+  RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" COMPONENT bin
+  )
+install(DIRECTORY "include/nasoq/" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/nasoq")
+install(EXPORT nasoq-export
+    FILE nasoqConfig.cmake
+    DESTINATION share/cmake/nasoq/
+    EXPORT_LINK_INTERFACE_LIBRARIES)
