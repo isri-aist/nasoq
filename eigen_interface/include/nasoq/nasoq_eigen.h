@@ -30,7 +30,7 @@
   //   z  m2 by 1 solution vector of primal vars
   // Returns nasoq exit flag
   //
-  int quadprog(
+  inline int quadprog(
     // Pass inputs by copy so we get non-const and casted data
     Eigen::SparseMatrix<double,Eigen::ColMajor,int> H,
     Eigen::Matrix<double,Eigen::Dynamic,1> q,

@@ -19,7 +19,7 @@
   //   x  n by 1 solution vector
   // Returns nasoq exit flag
   //
-  int linear_solve(
+  inline int linear_solve(
     // Pass inputs by copy so we get non-const and casted data
     Eigen::SparseMatrix<double,Eigen::ColMajor,int> A,
     Eigen::Matrix<double,Eigen::Dynamic,1> b,
