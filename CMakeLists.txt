@@ -4,6 +4,8 @@ project(nasoq CXX C)
 
 #----------------------------[ global configuration ]--------------------------#
 
+include(GNUInstallDirs)
+
 set(CMAKE_CXX_STANDARD 11)
 
 get_directory_property(HAS_PARENT PARENT_DIRECTORY)
@@ -172,9 +174,8 @@ endif()
 
 
 target_include_directories(nasoq PUBLIC
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-    $<INSTALL_INTERFACE:include/nasoq>
+    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}/nasoq>"
 )
 target_include_directories(nasoq PRIVATE ${NASOQ_INTERNAL_INCLUDE_DIRS})
 target_compile_definitions(nasoq PRIVATE "SYM_REMOV")
