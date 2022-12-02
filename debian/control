@@ -1,0 +1,27 @@
+Source: nasoq
+Priority: optional
+Maintainer: Pierre Gergondet <pierre.gergondet+ppa@gmail.com>
+Standards-Version: 3.9.5
+Section: libs
+Homepage: https://github.com/sympiler/nasoq
+Build-Depends: debhelper (>= 9),
+               pkg-config,
+               cmake,
+               doxygen,
+               libmetis-dev,
+               libopenblas-dev,
+               liblapack-dev,
+               liblapacke-dev,
+               graphviz
+
+Package: libnasoq-dev
+Section: libdevel
+Architecture: any
+Depends: cmake,
+         libmetis-dev,
+         libopenblas-dev,
+         liblapack-dev,
+         liblapacke-dev,
+         ${shlibs:Depends},
+         ${misc:Depends}
+Description: A scalable and efficient Quadratic Programming solver
