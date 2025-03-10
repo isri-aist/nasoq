@@ -2,12 +2,12 @@
 // Created by Shujian Qian on 2020-10-29.
 //
 
-#include "common/Reach.h"
+#include "nasoq/common/Reach.h"
 
 #include <chrono>
 
-#include "common/def.h"
-#include "common/DFS.h"
+#include "nasoq/common/def.h"
+#include "nasoq/common/DFS.h"
 
 namespace nasoq {
 
@@ -53,12 +53,6 @@ namespace nasoq {
     PBset[PBsize++] = col2sup[xi[i]];
    }
   }
-#if DEBUG > 0
-  for(int i=0; i<PBsize; i++){
-         std::cout<<PBset[i]<<",";
-     }
-     std::cout<<"\n";
-#endif
   delete[]checked;
   delete[]xi;
   return (PBsize);
