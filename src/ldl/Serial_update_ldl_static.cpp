@@ -2,15 +2,15 @@
 // Created by Shujian Qian on 2020-10-29.
 //
 
-#include "ldl/Serial_update_ldl_static.h"
+#include "nasoq/ldl/Serial_update_ldl_static.h"
 
 #include <cassert>
-#include <common/Sym_BLAS.h>
+#include <nasoq/common/Sym_BLAS.h>
 
 
 
 
-#include "common/Reach.h"
+#include "nasoq/common/Reach.h"
 
 namespace nasoq {
 
@@ -65,11 +65,6 @@ namespace nasoq {
      //      printf("dddd\n");
     }
    }
-#if DEBUG
-   top = ereach_sn(supNo,c,r,curCol,nxtCol,col2sup, eTree,xi,xi+supNo);
-         if(supNo-top != prunePtr[s]-prunePtr[s-1])
-             printf("sss");
-#endif
    top = ereach_sn(supNo, cT, rT, curCol, nxtCol, col2Sup, aTree, xi, xi + supNo);
    assert(top >= 0);
    //std::cout<<"--> "<<s-1<<";;";
@@ -78,10 +73,6 @@ namespace nasoq {
     int lSN = xi[i];
     //std::cout<<lSN<<";";
     int nSupRs = 0;
-#if DEBUG
-    if(xi[top++] != lSN)
-                 printf("fail");
-#endif
     int cSN = blockSet[lSN];//first col of current SN
     int cNSN = blockSet[lSN + 1];//first col of Next SN
     int Li_ptr_cNSN = Li_ptr[cNSN];
